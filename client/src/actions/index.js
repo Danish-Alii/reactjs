@@ -1,8 +1,8 @@
 //action creator
 
-export const selectRow = (id)=>{
+export const edit1Row = (id)=>{
     return {
-        type:'ROW_SELECTED',
+        type:'ROW_EDITED',
         payload: id
     };
 };
@@ -15,12 +15,6 @@ export const deleteRow = (state)=>{
 export const submitForm = (state)=>{
     return {
         type:'FORM_SUBMISSION',
-        payload: state
-    };
-};
-export const formData = (state)=>{
-    return {
-        type:'FORM_DATA',
         payload: state
     };
 };

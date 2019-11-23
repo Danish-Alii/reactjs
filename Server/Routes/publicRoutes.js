@@ -76,7 +76,28 @@ route.post("/delform1",(req,res)=>{
         if(err) throw new Error(err)
         console.log("1 document deleted");
     })
-    res.send({message:true})
+    res.send({state:true})
+})
+
+// route.post("/deltable",(req,res)=>{
+//     // let id1 = req.body.selectedRow;
+//     // console.log(typeof id1)
+//     Form.drop(function(err, delOK) {
+//         if (err) throw err;
+//         if (delOK) console.log("Collection deleted");
+//     })
+//     res.send({state:true})
+// })
+
+route.post("/editform1",(req,res)=>{
+    let id1 = req.body.id;
+    let newValues = req.body.obj
+    // console.log(typeof id1)
+    Form.updateOne( { "_id" : id1} , newValues ,function(err,obj) {
+        if(err) throw new Error(err)
+        console.log("1 document updated");
+    })
+    res.send({state:true})
 })
 
 module.exports = route;

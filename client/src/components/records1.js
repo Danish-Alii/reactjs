@@ -13,17 +13,17 @@ class records1 extends Component {
     // this.tableData = this.tableData.bind(this);
     // this.selecting = this.selecting.bind(this);
     // console.log("records1 constructor is called");
-    console.log(this.props)
+    // console.log(this.props)
   }
 
-  // componentDidMount() {
-  //   console.log("records1 componentdidmount is called");
-  //   // this.setState({st:this.props.deletedRow})
-  // }
+  componentDidMount() {
+    console.log("records1 componentdidmount is called");
+    // this.setState({st:this.props.deletedRow})
+  }
  
-  // componentDidUpdate(){
-  //   console.log("records1 componentdidupdate is called");
-  // }
+  componentDidUpdate(){
+    console.log("records1 componentdidupdate is called");
+  }
 
 //   onSearchSubmit = term => {
 //     this.setState({ st: term });
@@ -76,12 +76,15 @@ class records1 extends Component {
     );
   }
 }
-// const mapStateToProps = (state)=>{
-//   // console.log(use + when primitive and when object use , )
-//   console.log("selecting mapstatetoprops ",state)
-//   return {selectedSong: state.selectedSong}
-// };
+const mapStateToProps = (state)=>{
+  // console.log(use + when primitive and when object use , )
+  // console.log("selecting mapstatetoprops ",state)
+  return {
+    // submitForm1:state.submittedForm
+
+  }
+};
 
 
  
-export default records1;
+export default connect(mapStateToProps)(records1);

@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import "./Update.css";
 import { connect} from 'react-redux';
-import { selectRow } from "../actions";
+import { edit1Row } from "../actions";
+import { submitForm } from "../actions";
 
 class Update extends Component {
   constructor(props) {
@@ -11,6 +12,8 @@ class Update extends Component {
     this.fetchData = this.fetchData.bind(this);
     this.tableData = this.tableData.bind(this);
     this.selecting = this.selecting.bind(this);
+    this.deleteRow = this.deleteRow.bind(this)
+    this.editRow = this.editRow.bind(this)
     // console.log("update constructor is called");
     console.log(this.props)
 
@@ -22,8 +25,9 @@ class Update extends Component {
   }
   componentDidUpdate(){
     console.log("update componentDidUpdate called");
-      if(this.props.submitForm===true){
+      if(this.props.submittedForm===true){
         this.fetchData();
+        this.props.submitForm(false)
       }
   }
  
@@ -41,9 +45,54 @@ class Update extends Component {
 
   async selecting(event){
     // dispatching action
-    // console.log(this)
-    this.props.selectRow(event.target.parentNode.id)
+    // this.props.selectRow({obj1:event.target.parentNode, obj2:true})
+    
   }
+  editRow(st){
+    console.log(st)
+    let data = {
+      status:true,
+      obj:{
+        id: st._id,
+        username: st.username,
+        password: st.password,
+        email:st.email,
+        phone:st.phone
+      }
+    }
+    this.props.edit1Row(data)
+  
+  //   fetch('http://localhost:5000/editform1', {
+  //     method: 'POST',
+  //     headers: {
+  //         'content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  // }).then(response=>{
+  //   response.json().then(item=>{
+  //       // console.log(this.props.selectedRow)
+  //       // this.props.submitForm(item.message)
+  //   })
+  // })
+  
+  }
+  deleteRow(st){
+    // console.log("delete of this ",this)
+    console.log("ssssssssssssssssssssssssssssssssss",st)
+    fetch('http://localhost:5000/delform1', {
+      method: 'POST',
+      headers: {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify({selectedRow :st._id})
+  }).then(response=>{
+    response.json().then(item=>{
+        // console.log(item.message)
+        this.props.submitForm(item.state)
+    })
+  })
+ 
+}
 
   tableData() {
     console.log("table data is this one now")
@@ -57,6 +106,8 @@ class Update extends Component {
             <td>{password}</td>
             <td>{email}</td>
             <td>{phone}</td>
+            <button onClick={()=>this.editRow(student)} style = {{margin:'10px'}}>edit</button>
+            <button onClick={()=>this.deleteRow(student)} >delete</button>
           </tr>
         );
       });
@@ -64,7 +115,7 @@ class Update extends Component {
   }
 
   render() {
-    console.log("render of update",this.props.submitForm)
+    console.log("render of update")
     return (
       <div>
         <div className="container">
@@ -81,11 +132,12 @@ class Update extends Component {
             <table className="table table-bordered">
               <thead>
                 <tr>
-                  <th>Index</th>
-                  <th>Username</th>
-                  <th>password</th>
-                  <th>email</th>
-                  <th>phone</th>
+                  <th style = {{width:'10px'}}>Index</th>
+                  <th style = {{width:'50px'}}>Username</th>
+                  <th style = {{width:'50px'}}>password</th>
+                  <th style = {{width:'80px'}}>email</th>
+                  <th style = {{width:'60px'}}>phone</th>
+                  <th style = {{width:'60px'}}>commands</th>
                 </tr>
               </thead>
               <tbody>{this.tableData()}</tbody>
@@ -100,10 +152,10 @@ const mapStateToProps = (state)=>{
   // console.log(use + when primitive and when object use , )
   // console.log("update mapStateToProps",state)
   return {
-    selectedRow: state.selectedRow,
-    deletedRow:state.deletedRow,
-    submitForm:state.submitForm
+    // editedRow: state.editedRow,
+    // deleteRow:state.deletedRow,
+    submittedForm:state.submittedForm
   }
 };
 
-export default connect(mapStateToProps,{selectRow:selectRow})(Update);
+export default connect(mapStateToProps,{submitForm:submitForm, edit1Row:edit1Row})(Update);
