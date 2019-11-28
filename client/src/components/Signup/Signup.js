@@ -8,7 +8,7 @@ class Signup extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { rest: null }
+        this.state = { rest: null, message: '', status: false }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
@@ -30,8 +30,11 @@ class Signup extends Component {
             body: this.state.rest
         }).catch(error => {
             console.error('Error:', error)
+        }).then(response => {
+            response.json().then(msg => {
+                this.setState({message:msg.message})
+            });
         });
-        console.log("after fetch")
     }
 
 
@@ -45,6 +48,7 @@ class Signup extends Component {
                     {/* <!-- Icon --> */}
                     <div className="fadeIn first">
                         <img src="" id="icon" alt="User Icon" />
+                        {<div className="alert alert-danger" style={{ maxWidth: "300px", margin: "auto" }} role="alert">{this.state.message}</div>}
                         <div>
                             <Link style={{ display: "inline-block" }} to="/" className="sub nav-link fadeIn first">
                                 Sign Up

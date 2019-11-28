@@ -1,22 +1,23 @@
 //imports
 import React, { Component } from "react";
 import "./UpForm.css";
-import { selectSong } from "../actions";
+import { selectSong } from "../../actions";
 import { connect} from 'react-redux';
 import { BrowserRouter, Link, Switch, Route, Redirect } from 'react-router-dom'
-import { deleteRow } from "../actions";
-import { submitForm } from "../actions";
+import { deleteRow } from "../../actions";
+import { submitForm } from "../../actions";
 // import { selectRow } from "../actions";
-import { edit1Row } from "../actions";
-import Update from "./Update";
+import { edit1Row } from "../../actions";
+import Update from "../Update/Update";
 
 class UpForm extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { rest: "null",id:null,username: "",password: "",email: "",phone: 0, btnform:"Add"}
+    this.state = { rest: "null",id:null,username: "",password: "",email: "",phone: 0, btnform:"Add record"}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.deleteTable = this.deleteTable.bind(this)
     // this.deleteRow = this.deleteRow.bind(this)
     // this.editRow = this.editRow.bind(this)
     // console.log("upform contructor is called")
@@ -131,22 +132,22 @@ async handleSubmit(event) {
 }
 }
 
-//   deleteRow(){
-//     // console.log("delete of this ",this)
-//     fetch('http://localhost:5000/deltable', {
-//       method: 'POST',
-//       headers: {
-//           'content-type': 'application/json'
-//       },
-//       body: JSON.stringify({})
-//   }).then(response=>{
-//     response.json().then(item=>{
-//         // console.log(item.message)
-//         this.props.submitForm(item.message)
-//     })
-//   })
+  deleteTable(){
+    // console.log("delete of this ",this)
+    fetch('http://localhost:5000/deltable', {
+      method: 'POST',
+      headers: {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify({})
+  }).then(response=>{
+    response.json().then(item=>{
+        // console.log(item.message)
+        this.props.submitForm(item.state)
+    })
+  })
  
-// }
+}
 // editRow(){
  
 //   let data = {
@@ -191,8 +192,8 @@ async handleSubmit(event) {
                           <input type="Number" className="fadeIn third" name="phone" placeholder="phone" value = {this.state.phone} onChange={this.handleChange}/>
                           <input id="buttonform" type="submit" className="fadeIn fourth" value={this.state.btnform} />
                       </form>
-                      <input type="submit" className="fadeIn fourth" value="Delete" onClick={this.deleteRow} />
-                      <input type="submit" className="fadeIn fourth" value="Edit" onClick={this.editRow} />                    
+                      <input type="submit" className="fadeIn fourth" value="Delete All" onClick={this.deleteTable} />
+                      {/* <input type="submit" className="fadeIn fourth" value="Edit" onClick={this.editRow} />                     */}
                   </div>
               </div >
       );

@@ -1,7 +1,7 @@
 //imports
 import React, { Component } from "react";
-import UpForm from "./UpForm";
-import Update from './Update'
+import UpForm from "./UpForm/UpForm";
+import Update from './Update/Update'
 import { connect} from 'react-redux';
 // import { selectSong } from "../actions";
 

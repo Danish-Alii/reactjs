@@ -79,15 +79,15 @@ route.post("/delform1",(req,res)=>{
     res.send({state:true})
 })
 
-// route.post("/deltable",(req,res)=>{
-//     // let id1 = req.body.selectedRow;
-//     // console.log(typeof id1)
-//     Form.drop(function(err, delOK) {
-//         if (err) throw err;
-//         if (delOK) console.log("Collection deleted");
-//     })
-//     res.send({state:true})
-// })
+route.post("/deltable",(req,res)=>{
+    // let id1 = req.body.selectedRow;
+    // console.log(typeof id1)
+    Form.deleteMany({},function(err, delOK) {
+        if (err) throw err;
+        if (delOK) console.log("Collection deleted");
+    })
+    res.send({state:true})
+})
 
 route.post("/editform1",(req,res)=>{
     let id1 = req.body.id;

@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom'
 // components imports
 // import Home from './components/Home'
-import Records from './components/Records'
-import Signup from './components/Signup'
-import Signin from './components/Signin'
+import Records from './components/Record/Records'
+import Signup from './components/Signup/Signup'
+import Signin from './components/Signin/Signin'
 import  {selectedSong} from './actions';
 import records1 from './components/records1';
 class App extends Component {
@@ -26,9 +26,6 @@ class App extends Component {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/records">Record</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/records1">Records</Link>

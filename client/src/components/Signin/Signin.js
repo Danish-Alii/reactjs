@@ -54,7 +54,7 @@ class Signin extends Component {
                     {/* <!-- Icon --> */}
                     <div className="fadeIn first">
                         <img src="" id="icon" alt="User Icon" />
-                        {this.state.status === false ? <div className="alert alert-danger" style={{ maxWidth: "300px", margin: "auto" }} role="alert">{this.state.message}</div> : <Redirect to="/update" />}
+                        {this.state.status === false ? <div className="alert alert-danger" style={{ maxWidth: "300px", margin: "auto" }} role="alert">{this.state.message}</div> : <Redirect to="/records1" />}
 
                         <div>
                             <Link style={{ display: "inline-block" }} to="/" className="sub nav-link fadeIn first">

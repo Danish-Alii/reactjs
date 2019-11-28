@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 import "./Update.css";
 import { connect} from 'react-redux';
-import { edit1Row } from "../actions";
-import { submitForm } from "../actions";
+import { edit1Row } from "../../actions";
+import { submitForm } from "../../actions";
 
 class Update extends Component {
   constructor(props) {
