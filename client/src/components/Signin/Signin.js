@@ -1,6 +1,6 @@
 //imports
 import React, { Component } from 'react';
-import './Signin.css'
+import './Signin.scss'
 
 import { Redirect, Link } from 'react-router-dom'
 
