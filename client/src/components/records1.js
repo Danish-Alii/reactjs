@@ -17,12 +17,12 @@ class records1 extends Component {
   }
 
   componentDidMount() {
-    console.log("records1 componentdidmount is called");
+    // console.log("records1 componentdidmount is called");
     // this.setState({st:this.props.deletedRow})
   }
  
   componentDidUpdate(){
-    console.log("records1 componentdidupdate is called");
+    // console.log("records1 componentdidupdate is called");
   }
 
 //   onSearchSubmit = term => {
@@ -67,7 +67,7 @@ class records1 extends Component {
 //   }
 
   render() {
-    console.log("render of records1")
+    // console.log("render of records1")
     return (
         <div>
             <UpForm />

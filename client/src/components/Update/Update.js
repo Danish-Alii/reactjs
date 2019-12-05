@@ -1,6 +1,6 @@
 //imports
 import React, { Component } from "react";
-import "./Update.css";
+import * as styles from  "./Update.module.scss";
 import { connect} from 'react-redux';
 import { edit1Row } from "../../actions";
 import { submitForm } from "../../actions";
@@ -19,12 +19,12 @@ class Update extends Component {
 
   }
   componentDidMount() {
-    console.log("update componentdidmount is called");
+    // console.log("update componentdidmount is called");
     this.fetchData();
 
   }
   componentDidUpdate(){
-    console.log("update componentDidUpdate called");
+    // console.log("update componentDidUpdate called");
       if(this.props.submittedForm===true){
         this.fetchData();
         this.props.submitForm(false)
@@ -33,7 +33,7 @@ class Update extends Component {
  
 
    fetchData() {
-     console.log("fetch data update")
+    //  console.log("fetch data update")
     fetch("http://localhost:5000/upform1").then(response => {
       response.json().then(item => {
         this.setState({ formdata: item });
@@ -95,7 +95,7 @@ class Update extends Component {
 }
 
   tableData() {
-    console.log("table data is this one now")
+    // console.log("table data is this one now")
     if (this.state.formdata !== null) {
       return this.state.formdata.map((student, index) => {
         const { username, password, email, phone } = student;
@@ -115,12 +115,12 @@ class Update extends Component {
   }
 
   render() {
-    console.log("render of update")
+    // console.log("render of update")
     return (
       <div>
-        <div className="container">
-          <div className="table-wrapper">
-            <div className="table-title">
+        <div className={styles.container}>
+          <div className={styles.tablewrapper}>
+            <div className={styles.tabletitle}>
               <div className="row">
                 <div className="col-sm-8">
                   <h2>
@@ -129,7 +129,7 @@ class Update extends Component {
                 </div>
               </div>
             </div>
-            <table className="table table-bordered">
+            <table className={styles.table+' '+styles.tablebordered}>
               <thead>
                 <tr>
                   <th style = {{width:'10px'}}>Index</th>
